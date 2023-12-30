@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('background.jpg'); /* Replace 'your-background-image.jpg' with your image file path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff; /* Set text color to white */
+        }
+        .login-container {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: #ff0000;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .forgot-password {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+        .dashboard-container {
+            text-align: center;
+            color: #fff;
+            display: none;
+            padding: 20px;
+            background-color: #fff; /* White background for metrics page */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .metric-box {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            color: #fff; /* Set text color to white */
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="login-container">
+    <h2 style="color: white;">Login</h2>
+    <div class="form-group">
+        <label for="username">Username (Email):</label>
+        <input type="text" id="username" placeholder="Enter your email">
+        <div id="username-error" class="error"></div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <div id="password-error" class="error"></div>
+    </div>
+    <button onclick="validateLogin()">Login</button>
+    <a href="mailto:support@zentrades.pro" class="forgot-password">Forgot Password?</a>
+</div>
+
+<div class="dashboard-container" id="dashboard-container">
+    <h2>Welcome to the Dashboard!</h2>
+    <div class="metrics-container">
+        <div class="metric-box">
+            <h3>Total Revenue</h3>
+            <p>$1,000,000</p>
+        </div>
+        <div class="metric-box">
+            <h3>Total Jobs Avg</h3>
+            <p>$500,000</p>
+        </div>
+        <div class="metric-box">
+            <h3>Tickets Created</h3>
+            <p>100</p>
+        </div>
+        <div class="metric-box">
+            <h3>Tickets Scheduled</h3>
+            <p>50</p>
+        </div>
+        <div class="metric-box">
+            <h3>Outstanding Amount</h3>
+            <p>$200,000</p>
+        </div>
+        <div class="metric-box">
+            <h3>Membership Sold</h3>
+            <p>200</p>
+        </div>
+        <div class="metric-box">
+            <h3>Jobs Completed</h3>
+            <p>80</p>
+        </div>
+        <div class="metric-box">
+            <h3>Total Canceled</h3>
+            <p>10</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateLogin() {
+        // Reset errors
+        document.getElementById('username-error').innerText = '';
+        document.getElementById('password-error').innerText = '';
+
+        // Validate username (email)
+        const username = document.getElementById('username').value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(username)) {
+            document.getElementById('username-error').innerText = 'Invalid email format';
+            return;
+        }
+
+        // Validate password
+        const password = document.getElementById('password').value;
+
+        // Check if the password matches the specified one
+        if (password === 'ZenTradesTest@123') {
+            // Hide login container
+            document.getElementById('login-container').style.display = 'none';
+            // Display dashboard container
+            document.getElementById('dashboard-container').style.display = 'block';
+        } else {
+            // Display error
+            document.getElementById('password-error').innerText = 'Invalid password';
+        }
+    }
+</script>
+
+</body>
+</html>
